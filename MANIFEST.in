@@ -1,0 +1,7 @@
+include LICENSE
+include DESCRIPTION.rst
+include README.md
+recursive-include suit_rq/migrations *
+recursive-include suit_rq/static *
+recursive-include suit_rq/templates *
+recursive-include suit_rq/templatetags *
