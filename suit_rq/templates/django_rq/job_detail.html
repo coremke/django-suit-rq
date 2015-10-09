@@ -88,10 +88,12 @@
                     </td>
                 </tr>
                 {% endif %}
+                {% if job.exc_info %}
                 <tr>
                     <th>Exception:</th>
-                    <td><pre>{% if job.exc_info %}{{ job.exc_info|linebreaks }}{% endif %}</pre></td>
+                    <td><pre>{{ job.exc_info|linebreaks }}</pre></td>
                 </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>
