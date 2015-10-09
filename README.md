@@ -6,6 +6,8 @@
 
 [Django-rq](https://github.com/ui/django-rq) already provides a nice admin interface, but it doesn't look good with [django-suit](http://djangosuit.com/). This fixes that.
 
+![Example django-suit-rq image](https://s3-us-west-2.amazonaws.com/django-suit-rq/rq-demo.png)
+
 ## Quick start
 
 1. Install the package from pypi:
