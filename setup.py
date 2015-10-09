@@ -24,7 +24,10 @@ setup(
     zip_safe=False,
     include_package_data=True,
     platforms='any',
-    install_requires=[],
+    install_requires=[
+        'django-suit >=0.2.15, <0.3.0',
+        'django-rq >=0.8.0, <0.9.0',
+    ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Web Environment',
