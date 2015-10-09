@@ -16,12 +16,23 @@
 {% endblock %}
 
 {% block breadcrumbs %}
-    <div class="breadcrumbs">
-        <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
-        <a href="{% url 'rq_home' %}">Django RQ</a> &rsaquo;
-        <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a> &rsaquo;
-        <a href = "{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
-    </div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="{% url 'admin:index' %}">Home</a>
+            <span class="divider">»</span>
+        </li>
+        <li>
+            <a href="{% url 'rq_home' %}">Django RQ</a>
+            <span class="divider">»</span>
+        </li>
+        <li>
+            <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
+            <span class="divider">»</span>
+        </li>
+        <li class="active">
+            <a href = "{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
+        </li>
+    </ul>
 {% endblock %}
 
 {% block content_title %}<h1>Job Info</h1>{% endblock %}
@@ -130,11 +141,11 @@
     </fieldset>
 
     <div class="submit-row">
-        <p class="deletelink-box"><a href="delete/" class="deletelink">Delete</a></p>
+        <p class="btn btn-danger"><a href="delete/" class="deletelink">Delete</a></p>
         {% if job.is_failed %}
             <form method = 'POST' action = "{% url 'rq_requeue_job' queue_index job.id %}">
                 {% csrf_token %}
-                <input type="submit" value="Requeue" class="default" name="requeue">
+                <input type="submit" value="Requeue" class="btn btn-success" name="requeue">
             </form>
         {% endif %}
     </div>
