@@ -64,29 +64,30 @@
                     <th>Callable:</th>
                     <td>{{ job.func_name }}</td>
                 </tr>
+                {% if job.args %}
                 <tr>
                     <th>Args:</th>
                     <td>
-                    {% if job.args %}
-                    <ul>
-                        {% for arg in job.args %}
-                            <li>{{ arg }}</li>
-                        {% endfor %}
-                    </ul>
-                    {% endif %}
-                </td>
+                        <ul>
+                            {% for arg in job.args %}
+                                <li>{{ arg }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
                 </tr>
+                {% endif %}
+                {% if job.kwargs %}
                 <tr>
                     <th>Kwargs:</th>
                     <td>
-                    {% if job.kwargs %}
                         <ul>
                             {% for key, value in job.kwargs.items %}
                                 <li>{{ key }}: {{ value|escape }}</li>
                             {% endfor %}
                         </ul>
-                    {% endif %}</td>
+                    </td>
                 </tr>
+                {% endif %}
                 <tr>
                     <th>Exception:</th>
                     <td><pre>{% if job.exc_info %}{{ job.exc_info|linebreaks }}{% endif %}</pre></td>
