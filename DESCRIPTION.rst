@@ -1,7 +1,7 @@
 django-suit-rq
 ==============
 
-Support the django-rq admin when using django-suit
+Support for the django-rq admin when using django-suit
 
 Quick Start
 -----------

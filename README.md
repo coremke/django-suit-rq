@@ -1,6 +1,6 @@
 # django-suit-rq
 
-> Support the django-rq admin when using django-suit
+> Support for the django-rq admin when using django-suit
 
 [![Latest Version](https://img.shields.io/pypi/v/django-suit-rq.svg?style=flat)](https://pypi.python.org/pypi/django-suit-rq/)
 
