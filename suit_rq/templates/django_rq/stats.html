@@ -38,16 +38,16 @@
             </thead>
             <tbody>
                 {% for queue in queues %}
-                    <tr class = "{% cycle 'row1' 'row2' %}">
+                    <tr class="{% cycle 'row1' 'row2' %}">
                         <th class="nowrap">
-                            <a href = "{% url 'rq_jobs' queue.index %}">
+                            <a href="{% url 'rq_jobs' queue.index %}">
                                 {{ queue.name }}
                             </a>
                         </th>
                         <td class="text-center">{{ queue.jobs }}</td>
                         <td class="text-center">
                             {% if queue.name != 'failed' %}
-                                <a href = "{% url 'rq_started_jobs' queue.index %}">
+                                <a href="{% url 'rq_started_jobs' queue.index %}">
                                     {{ queue.started_jobs }}
                                 </a>
                             {% else %}
@@ -56,7 +56,7 @@
                         </td>
                         <td class="text-center">
                             {% if queue.name != 'failed' %}
-                                <a href = "{% url 'rq_deferred_jobs' queue.index %}">
+                                <a href="{% url 'rq_deferred_jobs' queue.index %}">
                                     {{ queue.deferred_jobs }}
                                 </a>
                             {% else %}
@@ -65,7 +65,7 @@
                         </td>
                         <td class="text-center">
                             {% if queue.name != 'failed' %}
-                                <a href = "{% url 'rq_finished_jobs' queue.index %}">
+                                <a href="{% url 'rq_finished_jobs' queue.index %}">
                                     {{ queue.finished_jobs }}
                                 </a>
                             {% else %}

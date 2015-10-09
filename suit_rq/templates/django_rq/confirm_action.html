@@ -2,17 +2,6 @@
 
 {% load url from future %}
 
-{% block extrastyle %}
-    {{ block.super }}
-    <style>
-        .data {
-            display: inline-block;
-            float: left;
-            width: 80%;
-        }
-    </style>
-{% endblock %}
-
 {% block breadcrumbs %}
     <ul class="breadcrumb">
         <li>
@@ -24,7 +13,7 @@
             <span class="divider">»</span>
         </li>
         <li>
-            <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
+            <a href="{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
             <span class="divider">»</span>
         </li>
         <li class="active">{{ action|capfirst }}</li>

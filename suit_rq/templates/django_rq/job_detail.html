@@ -2,19 +2,6 @@
 
 {% load url from future %}
 
-{% block extrastyle %}
-    {{ block.super }}
-    <style>
-        .data {
-            display: inline-block;
-            float: left;
-            width: 80%;
-            font-size: 12px;
-            padding-top: 3px;
-        }
-    </style>
-{% endblock %}
-
 {% block breadcrumbs %}
     <ul class="breadcrumb">
         <li>
@@ -26,11 +13,11 @@
             <span class="divider">»</span>
         </li>
         <li>
-            <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
+            <a href="{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
             <span class="divider">»</span>
         </li>
         <li class="active">
-            <a href = "{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
+            <a href="{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
         </li>
     </ul>
 {% endblock %}
@@ -41,68 +28,45 @@
 
 <div id="content-main">
 
-    <fieldset class="module aligned ">
+    <div class="module">
 
-        <div class="form-row">
-            <div>
-                <label class="required">ID:</label>
-                <div class="data">{{ job.id }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Queue:</label>
-                <div class="data">{{ job.origin }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Timeout:</label>
-                <div class="data">{{ job.timeout }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Result TTL:</label>
-                <div class="data">{{ job.result_ttl }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Created:</label>
-                <div class="data">{{ job.created_at }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Queued:</label>
-                <div class="data">{{ job.enqueued_at }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Status:</label>
-                <div class="data">{{ job.get_status }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Callable:</label>
-                <div class="data">{{ job.func_name }}</div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Args:</label>
-                <div class="data">
+        <table class="table table-striped table-bordered table-hover table-condensed">
+            <tbody>
+                <tr>
+                    <th>ID:</th>
+                    <td>{{ job.id }}</td>
+                </tr>
+                <tr>
+                    <th>Queue:</th>
+                    <td>{{ job.origin }}</td>
+                </tr>
+                <tr>
+                    <th>Timeout:</th>
+                    <td>{{ job.timeout }}</td>
+                </tr>
+                <tr>
+                    <th>Result TTL:</th>
+                    <td>{{ job.result_ttl }}</td>
+                </tr>
+                <tr>
+                    <th>Created:</th>
+                    <td>{{ job.created_at }}</td>
+                </tr>
+                <tr>
+                    <th>Queued:</th>
+                    <td>{{ job.enqueued_at }}</td>
+                </tr>
+                <tr>
+                    <th>Status:</th>
+                    <td>{{ job.get_status }}</td>
+                </tr>
+                <tr>
+                    <th>Callable:</th>
+                    <td>{{ job.func_name }}</td>
+                </tr>
+                <tr>
+                    <th>Args:</th>
+                    <td>
                     {% if job.args %}
                     <ul>
                         {% for arg in job.args %}
@@ -110,44 +74,35 @@
                         {% endfor %}
                     </ul>
                     {% endif %}
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div>
-                <label class="required">Kwargs:</label>
-                <div class="data">
+                </td>
+                </tr>
+                <tr>
+                    <th>Kwargs:</th>
+                    <td>
                     {% if job.kwargs %}
                         <ul>
                             {% for key, value in job.kwargs.items %}
                                 <li>{{ key }}: {{ value|escape }}</li>
                             {% endfor %}
                         </ul>
-                    {% endif %}
-                </div>
-            </div>
-        </div>
-
-
-        <div class="form-row">
-            <div>
-                <label class="required">Exception:</label>
-                <div class="data"><pre>{% if job.exc_info %}{{ job.exc_info|linebreaks }}{% endif %}</pre></div>
-            </div>
-        </div>
-
-
-    </fieldset>
+                    {% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Exception:</th>
+                    <td><pre>{% if job.exc_info %}{{ job.exc_info|linebreaks }}{% endif %}</pre></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
     <div class="submit-row">
-        <p class="btn btn-danger"><a href="delete/" class="deletelink">Delete</a></p>
-        {% if job.is_failed %}
-            <form method = 'POST' action = "{% url 'rq_requeue_job' queue_index job.id %}">
+        <form method="POST" action="{% url 'rq_requeue_job' queue_index job.id %}">
+            {% if job.is_failed %}
                 {% csrf_token %}
                 <input type="submit" value="Requeue" class="btn btn-success" name="requeue">
-            </form>
-        {% endif %}
+            {% endif %}
+            <a href="delete/" class="btn btn-danger">Delete</a>
+        </form>
     </div>
 
 </div>

@@ -2,17 +2,6 @@
 
 {% load url from future %}
 
-{% block extrastyle %}
-    {{ block.super }}
-    <style>
-        .data {
-            display: inline-block;
-            float: left;
-            width: 80%;
-        }
-    </style>
-{% endblock %}
-
 {% block breadcrumbs %}
     <ul class="breadcrumb">
         <li>
@@ -24,11 +13,11 @@
             <span class="divider">»</span>
         </li>
         <li>
-            <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
+            <a href="{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>
             <span class="divider">»</span>
         </li>
         <li>
-            <a href = "{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
+            <a href="{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a>
             <span class="divider">»</span>
         </li>
         <li class="active">Delete</li>
@@ -41,7 +30,7 @@
 
 <div id="content-main">
     <p>
-        Are you sure you want to delete <a href = "{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a> from <a href = "{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>?
+        Are you sure you want to delete <a href="{% url 'rq_job_detail' queue_index job.id %}">{{ job.id }}</a> from <a href="{% url 'rq_jobs' queue_index %}">{{ queue.name }}</a>?
         This action can not be undone.
     </p>
     <form action="" method="post">

@@ -96,18 +96,20 @@
                     </tbody>
                 </table>
             </div>
-            <div class="paginator">
-                <ul>
-                {% for p in page_range %}
-                    {% if p == page %}
-                        <li class="active">{{ p }}</li>
-                    {% elif forloop.last %}
-                        <li><a href="?page={{ p }}" class="end">{{ p }}</a></li>
-                    {% else %}
-                        <li><a href="?page={{ p }}">{{ p }}</a></li>
-                    {% endif %}
-                {% endfor %}
-                </ul>
+            <div class="pagination-block">
+                <div class="pagination">
+                    <ul>
+                    {% for p in page_range %}
+                        {% if p == page %}
+                            <li class="active"><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% elif forloop.last %}
+                            <li><a href="?page={{ p }}" class="end">{{ p }}</a></li>
+                        {% else %}
+                            <li><a href="?page={{ p }}">{{ p }}</a></li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                </div>
                 <div class="pagination-info muted">
                     {{ num_jobs }} jobs
                 </div>
