@@ -26,7 +26,7 @@ setup(
     platforms='any',
     install_requires=[
         'django-suit >=0.2.15, <0.3.0',
-        'django-rq >=0.8.0, <0.9.0',
+        'django-rq >=2.0.2, <3.0.0',
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
